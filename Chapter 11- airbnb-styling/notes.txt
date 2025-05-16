@@ -1,0 +1,2 @@
+//how to serve static files
+by creating a public folder

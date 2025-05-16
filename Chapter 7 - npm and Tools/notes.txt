@@ -1,0 +1,19 @@
+npm init :
+with the help of npm init we can create project and define the requirements and dependencies
+
+npm scripts :
+In package.json file we have dependencies and dev dependencies so instead of writing long lines of script to run the project we can simplify it by using custom scripts.
+start command is mostly used
+ex: "start" : node app.js(this is the entry point of the project and responsible to run the project)
+
+custom script :  "khul-ja-sim-sim" : node app.js
+
+//npm packages:
+-save  - add package to project dependencies
+--save-dev  - add package to development(dev) dependencies which is only used in development
+-g - to install globally means instead of just installing in project folder we will install it globally means we can used it on terminal
+-save-exact  - if we want to save to install exact version of something
+-force - sometimes node restricts something to install and if we are confidence that it can be save to use we use this force command
+
+//nodemon
+instead of manually typing command after each change we can simply install nodemon ,it automatically runs the project after every change..!

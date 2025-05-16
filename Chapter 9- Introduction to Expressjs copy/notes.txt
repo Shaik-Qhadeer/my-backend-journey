@@ -1,0 +1,3 @@
+get / post - ye use kare to sirf particular path ku search karta aur nai mile to error dedata
+
+use - agat '/' raha to sab ku access karta kyunki ye wildcard ke jaisa hai jiske bhi paas '/' ye dikha sab ku access karta

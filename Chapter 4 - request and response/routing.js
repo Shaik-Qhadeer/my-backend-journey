@@ -1,0 +1,37 @@
+const http = require('http');
+
+const server =http.createServer((req,res) =>{
+  console.log(req.url, req.method, req.headers);
+
+  if(req.url === '/About'){
+    res.setHeader('Content-Type', 'text/html')
+    res.write('<html>');
+    res.write('<head><title>Backend</title></head>');
+    res.write('<body><h1>Hello from Shaik Qhadeer!</h1></body>');
+    res.write('</html>');
+    return res.end();
+
+  }else if(req.url === '/products'){
+    res.setHeader('Content-Type', 'text/html')
+    res.write('<html>');
+    res.write('<head><title>Backend</title></head>');
+    res.write('<body><h1>watch <br> shirt</h1></body>');
+    res.write('</html>');
+    return res.end();
+
+  }
+
+  res.setHeader('Content-Type', 'text/html')
+  res.write('<html>');
+  res.write('<head><title>Backend</title></head>');
+  res.write('<body><h1>Error 404</h1></body>');
+  res.write('</html>');
+  return res.end();
+   //ek baar aap res.end likhe to fir kuch bhi nai kar sakte aur na header set kar sakte isliye return use karte
+
+})
+
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Sever is listening at http://localhost:${PORT}`)
+});

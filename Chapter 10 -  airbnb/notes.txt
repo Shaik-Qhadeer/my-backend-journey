@@ -1,0 +1,67 @@
+Express Routers:
+app-express ka ek instance hai isku sirf ek baar use kar sakte ..isliye apa app.use etc sirf app.js me use karre..and routes me userRouter.use etc aisa apne hisaab se use karre
+
+
+//common path handling
+path - instead of using long names like /host/add-home etc everywhere apan kya karre bole to jahan bhi add-home likhna hai simply wo likh dere and app.js  me "/host",hostRouter -path add kardere mtlab jo bhi yahan se aara wo host ka hai samajh jaana
+
+
+//serving html files-
+at first ek folder create karre views name se and uske andar html files create karre uske baad ye html files ku serve karre:
+//ye relative path rahta
+const path = require('path)
+sendFile(path.join(__dirname,'../','views','home.html'))
+__dirname - Apna current Folder batata ine
+pehle require path se import karlere then sendFile ki help se path dedere.path.join ki help se concat kardere path ku html files se
+
+
+absolute path using utils://using file helper
+Sure! Let's break it down step by step.
+
+### **Code:**
+```js
+module.exports = path.dirname(require.main.filename);
+```
+
+### **What This Does?**
+It **exports the directory name** of the main file that started the Node.js application.
+
+---
+
+### **Breaking It Down:**
+1. **`require.main.filename`**
+   - This gives the **full path** of the file that started the app (e.g., `app.js`).
+   - Example:
+     ```
+     /Users/qhadeer/projects/myapp/app.js
+     ```
+
+2. **`path.dirname(...)`**
+   - This extracts the **directory** from that full path.
+   - Example:
+     ```
+     /Users/qhadeer/projects/myapp
+     ```
+
+3. **`module.exports = ...`**
+   - It makes this directory path available to other files when they `require()` it.
+
+---
+
+### **Example Usage:**
+```js
+const rootDir = require("./util/path");  // Assuming this code is inside "path.js"
+
+console.log(rootDir);
+```
+➡️ Output:
+```
+/Users/qhadeer/projects/myapp
+```
+
+---
+
+### **Why Use This?**
+✅ Helps in creating **absolute paths** dynamically.
+✅ Useful when serving static files or managing project directories.
+

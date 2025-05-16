@@ -4,5 +4,6 @@ exports.pageNotFound = (req, res, next) => {
     currentPage: "404",
     isLoggedIn: req.session.isLoggedIn || false,
     user: req.session.user || null,
+    
   });
 };

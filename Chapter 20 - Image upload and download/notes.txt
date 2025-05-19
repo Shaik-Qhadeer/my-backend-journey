@@ -1,0 +1,27 @@
+sharig global variables
+
+What is EJS
+html with js - embed js code within html
+simple syntax : uses <% %> for control flow
+<%= %> for output-ye use karte jab ui pe display karna rahta
+partials- code reuse ke liye
+
+package install karna - npm i --save EJS
+ejs(templating engine)
+const app = express();
+
+app.set('view engine','ejs');
+app.set('views','views') //ejs views ke folder pe lagate
+
+//using EJS:
+
+<ul class="list-disc list-inside space-y-2">
+      <% registeredHomes.forEach(home => { %>
+        <li class="text-gray-700 hover:text-red-500 transition-colors duration-300 text-2xl">
+          <%= home.houseName %>
+        </li>
+      <% }); %>
+      home.ejs template name hai-isliye home.houseName use kare aur ye = ke saath use kare isliye display bhi hora houseName
+
+// Working with partials
+

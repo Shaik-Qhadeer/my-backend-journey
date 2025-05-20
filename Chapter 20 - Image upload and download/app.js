@@ -5,9 +5,9 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
 const multer = require('multer');
 const DB_PATH = "mongodb+srv://backend:backend123@backendlearning.gcktfxd.mongodb.net/airbnb?retryWrites=true&w=majority&appName=backendLearning";
-const { default: mongoose } = require('mongoose');
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
@@ -69,7 +69,7 @@ app.use('/homes/uploads', express.static(path.join(rootDir, 'uploads')));
 
 
 app.use(session({
-  secret: "Code with Qhadeer",
+  secret: "",
   resave: false,
   saveUninitialized: true,
   store

@@ -5,7 +5,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const DB_PATH = "mongodb+srv://backend:backend123@backendlearning.gcktfxd.mongodb.net/airbnb?retryWrites=true&w=majority&appName=backendLearning";
+const DB_PATH = "";
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")

@@ -35,7 +35,7 @@ app.use(errorsController.pageNotFound);
 // Create server
 
 const PORT = 3000;
-const DB_PATH = "mongodb+srv://backend:backend123@backendlearning.gcktfxd.mongodb.net/airbnb?retryWrites=true&w=majority&appName=backendLearning"
+const DB_PATH = ""
  mongoose.connect(DB_PATH).then(() =>{
   console.log('Connected to Mongo')
   app.listen(PORT, () => {

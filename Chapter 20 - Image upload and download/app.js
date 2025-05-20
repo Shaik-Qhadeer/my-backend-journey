@@ -1,12 +1,12 @@
 // Core Module
 const path = require('path');
+const multer = require('multer');
 
 // External Module
 const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
-const multer = require('multer');
 const DB_PATH = "mongodb+srv://backend:backend123@backendlearning.gcktfxd.mongodb.net/airbnb?retryWrites=true&w=majority&appName=backendLearning";
 
 //Local Module

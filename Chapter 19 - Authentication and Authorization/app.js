@@ -33,7 +33,7 @@ const store = new MongoDbStore({
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
-  secret: 'Code with Qhadeer',
+  secret: '',
   resave: false,
   saveUninitialized: false,
   store: store,

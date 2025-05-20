@@ -1,5 +1,7 @@
+const home = require("../models/home");
 const Home = require("../models/home");
 const user = require("../models/user");
+const fs = require("fs");
 
 exports.getAddHome = (req, res, next) => {
   res.render("host/edit-home", {
@@ -42,25 +44,35 @@ exports.getHostHomes = (req, res, next) => {
 };
 
 exports.postAddHome = (req, res, next) => {
-  const { houseName, price, location, rating, photoUrl ,description} = req.body;
+  const { houseName, price, location, rating,description} = req.body;
+  console.log(houseName, price, location, rating,description);
+  console.log(req.file);
+
+  if (!req.file) {
+    res.status(400).send("No file uploaded.");
+    return;
+  }
+
+  const photo = req.file.path;
+
+
+
   const newHome = new Home ({
     houseName: houseName,
     price: price,
     location: location,
     rating: rating,
-    photoUrl: photoUrl,
+    photo: photo,
     description:description
   });
   newHome.save().then(() => {
-    console.log("Home added successfully");
-  }).catch(err => {
-    console.log("Error while adding home:", err);
+    console.log("Home saved successfully");
   });
   res.redirect("/host/host-home-list");
 };
 
 exports.postEditHome = (req, res, next) => {
-  const { id, houseName, price, location, rating, photoUrl,description} = req.body;
+  const { id, houseName, price, location, rating, photo,description} = req.body;
   Home.findById(id).then(home => {
     if (!home) {
       console.log("Home not found for editing.");
@@ -70,8 +82,20 @@ exports.postEditHome = (req, res, next) => {
     home.price = price;
     home.location = location;
     home.rating = rating;
-    home.photoUrl = photoUrl;
-    home.description=description
+    home.description=description;
+
+    if (req.file) {
+      fs.unlink(home.photo, (err) => {
+        if (err) {
+          console.log("Error deleting old photo:", err);
+        } else {
+          console.log("Old photo deleted successfully");
+        }
+      });
+      home.photo = req.file.path;
+    }
+
+
     return home.save();
   }).then(() => {
     console.log("Home updated successfully");

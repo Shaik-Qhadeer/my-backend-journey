@@ -1,6 +1,8 @@
 // Core Module
 const path = require('path');
 const multer = require('multer');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
 
 // External Module
 const express = require('express');
@@ -14,7 +16,8 @@ const storeRouter = require("./routes/storeRouter")
 const hostRouter = require("./routes/hostRouter")
 const authRouter = require("./routes/authRouter")
 const rootDir = require("./utils/pathUtil");
-const errorsController = require("./controllers/errors")
+const errorsController = require("./controllers/errors");
+const downloadRouter = require("./routes/downloadRouter");
 
 
 const app = express();
@@ -69,7 +72,7 @@ app.use('/homes/uploads', express.static(path.join(rootDir, 'uploads')));
 
 
 app.use(session({
-  secret: "",
+  secret: "Code with Qhadeer",
   resave: false,
   saveUninitialized: true,
   store
@@ -88,6 +91,7 @@ app.use((req, res, next) => {
 
 app.use(authRouter)
 app.use(storeRouter);
+app.use(downloadRouter);
 app.use("/host", (req, res, next) => {
   if (req.isLoggedIn) {
     next();
@@ -96,6 +100,7 @@ app.use("/host", (req, res, next) => {
   }
 });
 app.use("/host", hostRouter);
+app.use("/home-details", downloadRouter);
 
 
 

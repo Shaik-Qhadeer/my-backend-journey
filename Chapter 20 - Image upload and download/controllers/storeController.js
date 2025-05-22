@@ -1,5 +1,7 @@
 const Home = require("../models/home");
 const User = require("../models/user");
+const path = require("path");
+const rootDir = require("../utils/pathUtil");
 
 exports.getIndex = (req, res, next) => {
   console.log("Session Value: ", req.session);
@@ -68,6 +70,19 @@ exports.postRemoveFromFavourite = async (req, res, next) => {
   }
   res.redirect("/favourites");
 };
+
+exports.getHouseRules = [(req, res, next) => {
+  if(!req.isLoggedIn) {
+    return res.redirect("/login");
+  }
+  next();
+}, (req, res, next) => {
+  const homeId = req.params.homeId;
+  const rulesFileName = `House Rules.pdf`;
+  const filePath = path.join(rootDir, "rules", rulesFileName);
+  res.download(filePath,'Rules.pdf');
+}
+]
 
 exports.getHomeDetails = (req, res, next) => {
   const homeId = req.params.homeId;

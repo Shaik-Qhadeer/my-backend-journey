@@ -126,11 +126,12 @@ exports.postLogin = async (req, res, next) => {
     return res.redirect('/login'); // password doesn't match
   }
 
-  req.session.user = user;
-  req.session.isLoggedIn = true;
-  return req.session.save(() => {
-    res.redirect('/');
-  });
+ const isAuth = (req, res, next) => {
+  if (!req.session.isAuthenticated) {
+    return res.redirect('/login');
+  }
+  next();
+};
 };
 exports.postLogout = (req, res, next) => {
   req.session.destroy(() => {
